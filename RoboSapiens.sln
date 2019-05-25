@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboSapiens", "RoboSapiens\RoboSapiens.csproj", "{D1F829ED-5278-4AF6-AE47-D7A3684FE3ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{329AB341-41DA-4C74-9110-E58E28164135}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D1F829ED-5278-4AF6-AE47-D7A3684FE3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1F829ED-5278-4AF6-AE47-D7A3684FE3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1F829ED-5278-4AF6-AE47-D7A3684FE3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{329AB341-41DA-4C74-9110-E58E28164135}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329AB341-41DA-4C74-9110-E58E28164135}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329AB341-41DA-4C74-9110-E58E28164135}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329AB341-41DA-4C74-9110-E58E28164135}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using RoboSapiens.Models;
+
 
 namespace RoboSapiens.Controllers
 {
@@ -13,6 +15,14 @@ namespace RoboSapiens.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public List<ChatPreviewVM> GetConversationPreview()
+        {
+            return new List<ChatPreviewVM>()
+            {
+                new ChatPreviewVM("Marello", "ciao, sono disperato...", "24-MAR")
+            };
         }
 
         public IActionResult About()
