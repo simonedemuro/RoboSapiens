@@ -5,15 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using RoboSapiens.Domain.DTO;
+using RoboSapiens.EF.Models;
 using RoboSapiens.Models;
-
+using RoboSapiens.Repository;
+using RoboSapiens.UI.Controllers;
 
 namespace RoboSapiens.Controllers
 {
     public class HomeController : Controller
     {
+        ConversationsRepository Repo;
+
         public IActionResult Index()
         {
+            Repo = new ConversationsRepository(new SupportSapiensContext());
+            List<MessageDTO> test = Repo.GetConversationMessages(3);
             return View();
         }
 

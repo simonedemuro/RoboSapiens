@@ -9,10 +9,12 @@
     <PackageReference Include="jQuery" Version="3.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\RoboSapiens.Domain.csproj" />
+    <ProjectReference Include="..\RoboSapiens.Repository\RoboSapiens.Repository.csproj" />
   </ItemGroup>
 
 </Project>

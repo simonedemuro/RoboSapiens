@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain\RoboSapiens.Domain.csproj" />
     <ProjectReference Include="..\RoboSapiens.EF\RoboSapiens.EF.csproj" />
   </ItemGroup>
 
