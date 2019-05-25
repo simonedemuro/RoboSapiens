@@ -24,8 +24,8 @@ function populateChatPreview() {
 function populateChatWindow(chatId) {
     console.log("inside populateChatWindow");
     $.ajax({
-        url: "Home/GetChatMessages",
-        data: chatId,
+        url: "Home/GetChatMessages?ChatId=" + chatId,
+        data: "",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",

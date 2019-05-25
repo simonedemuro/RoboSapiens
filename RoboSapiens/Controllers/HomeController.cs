@@ -27,13 +27,9 @@ namespace RoboSapiens.Controllers
         public List<ChatPreviewVM> GetConversationPreview() => Repo.GetConversations();
 
         [HttpGet]
-        public List<ChatMessageVM> GetChatMessages()
+        public List<ChatMessageVM> GetChatMessages(long ChatId)
         {
-            return new List<ChatMessageVM>()
-            {
-                new ChatMessageVM("Ciaoo", "24-Mar", "11:09", "incoming_msg"),
-                new ChatMessageVM("Salve, sono un messaggio molto lungo per un test, come sto? Nessuno mai me lo chiede...", "24-Mar", "11:10", "outgoing_msg")
-            };
+            return Repo.GetConversationMessages(ChatId);
         }
 
         public IActionResult About()

@@ -17,17 +17,16 @@ namespace RoboSapiens.Repository
             this.dbContext = dbContext;
         }
 
-        public List<MessageDTO> GetConversationMessages(long ConversationId)
+        public List<ChatMessageVM> GetConversationMessages(long ConversationId)
         {
-            /*List<Message> dbMessages = dbContext.Message
+            List<Message> dbMessages = dbContext.Message
                 .Where(x => x.ConversationId == ConversationId)
                 .ToList();
-            List<MessageDTO> messageDTOs = new List<MessageDTO>();
+            List<ChatMessageVM> messageDTOs = new List<ChatMessageVM>();
 
             dbMessages.ForEach(x => messageDTOs.Add(x.ToMessageDTO()));
 
-            return messageDTOs;*/
-            return null;
+            return messageDTOs;
         }
 
         public List<ChatPreviewVM> GetConversations()

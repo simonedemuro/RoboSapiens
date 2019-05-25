@@ -1,4 +1,5 @@
-﻿using RoboSapiens.Domain.DTO;
+﻿using Domain.ViewModels;
+using RoboSapiens.Domain.DTO;
 using RoboSapiens.EF.Models;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,9 @@ namespace RoboSapiens.Domain.ExtensionMethods
 {
     public static class DTOsExtensionMethods
     {
-        public static MessageDTO ToMessageDTO(this Message msg)
+        public static ChatMessageVM ToMessageDTO(this Message msg)
         {
-            return new MessageDTO()
-            {
-                Id = msg.Id,
-                IsFromAgent = msg.IsFromAgent,
-                PrimaryEmotion = msg.PrimaryEmotion,
-                Text = msg.Text
-            };
+            return new ChatMessageVM(msg.Text, msg.Timestamp.Date.ToString(), msg.Timestamp.TimeOfDay.ToString(), msg.IsFromAgent);
         }
 
         public static ConversationDTO ToConversationDTO(this Conversation conv)
