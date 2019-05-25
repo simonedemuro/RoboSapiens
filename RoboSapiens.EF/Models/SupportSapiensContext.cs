@@ -17,10 +17,10 @@ namespace RoboSapiens.EF.Models
 
         public virtual DbSet<AgentIssueTag> AgentIssueTag { get; set; }
         public virtual DbSet<AgentUser> AgentUser { get; set; }
+        public virtual DbSet<Conversation> Conversation { get; set; }
         public virtual DbSet<CustomerUser> CustomerUser { get; set; }
         public virtual DbSet<IssueTag> IssueTag { get; set; }
-
-        // Unable to generate entity type for table 'dbo.noemoji'. Please see the warning messages.
+        public virtual DbSet<Message> Message { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -59,6 +59,33 @@ namespace RoboSapiens.EF.Models
                     .HasMaxLength(255);
             });
 
+            modelBuilder.Entity<Conversation>(entity =>
+            {
+                entity.ToTable("Conversation", "conv");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.PrevalentEmotion).HasMaxLength(255);
+
+                entity.HasOne(d => d.Agent)
+                    .WithMany(p => p.Conversation)
+                    .HasForeignKey(d => d.AgentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Conversation_AgentUser");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Conversation)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Conversation_CustomerUser");
+
+                entity.HasOne(d => d.Tag)
+                    .WithMany(p => p.Conversation)
+                    .HasForeignKey(d => d.TagId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Conversation_IssueTag");
+            });
+
             modelBuilder.Entity<CustomerUser>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(NEXT VALUE FOR [userUniqueId])");
@@ -77,6 +104,19 @@ namespace RoboSapiens.EF.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.ToTable("Message", "conv");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.IsFromAgent).HasColumnName("isFromAgent");
+
+                entity.Property(e => e.PrimaryEmotion).HasMaxLength(255);
+
+                entity.Property(e => e.Text).IsRequired();
             });
 
             modelBuilder.HasSequence("userUniqueId");
