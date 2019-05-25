@@ -18,20 +18,13 @@ namespace RoboSapiens.Controllers
 
         public IActionResult Index()
         {
-            List<MessageDTO> test = Repo.GetConversationMessages(3);
-            List <ConversationDTO> testConversations = Repo.GetConversations();
+            //List<MessageDTO> test = Repo.GetConversationMessages(3);
+            //List <ConversationDTO> testConversations = Repo.GetConversations();
             return View();
         }
 
         [HttpGet]
-        public List<ChatPreviewVM> GetConversationPreview()
-        {
-            return new List<ChatPreviewVM>()
-            {
-                new ChatPreviewVM(1, "Marello", "ciao, sono disperato...", "24-MAR"),
-                new ChatPreviewVM(2, "Giuseppe", "Vuoi guadagnare 200 euro al secondo quadro stando comodamente seduto a casa?", "22-MAR")
-            };
-        }
+        public List<ChatPreviewVM> GetConversationPreview() => Repo.GetConversations();
 
         [HttpGet]
         public List<ChatMessageVM> GetChatMessages()
