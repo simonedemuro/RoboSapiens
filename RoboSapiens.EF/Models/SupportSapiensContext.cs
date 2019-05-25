@@ -61,8 +61,6 @@ namespace RoboSapiens.EF.Models
 
             modelBuilder.Entity<Conversation>(entity =>
             {
-                entity.ToTable("Conversation", "conv");
-
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.PrevalentEmotion).HasMaxLength(255);
@@ -108,8 +106,6 @@ namespace RoboSapiens.EF.Models
 
             modelBuilder.Entity<Message>(entity =>
             {
-                entity.ToTable("Message", "conv");
-
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.IsFromAgent).HasColumnName("isFromAgent");
@@ -117,6 +113,12 @@ namespace RoboSapiens.EF.Models
                 entity.Property(e => e.PrimaryEmotion).HasMaxLength(255);
 
                 entity.Property(e => e.Text).IsRequired();
+
+                entity.HasOne(d => d.Conversation)
+                    .WithMany(p => p.Message)
+                    .HasForeignKey(d => d.ConversationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Message_Conversation");
             });
 
             modelBuilder.HasSequence("userUniqueId");
