@@ -6,14 +6,15 @@ namespace Domain.ViewModels
 {
     public class ChatPreviewVM
     {
-        public string ChatTitle;
+        public int ChatID;
+        public string Username;
         public string PreviewMessage;
         public string LastMessageDate;
 
-        public ChatPreviewVM(string chatTitle, string previewMessage, string lastMessageDate)
+        public ChatPreviewVM(int ID, string chatTitle, string preview, string lastMessageDate)
         {
-            ChatTitle = chatTitle;
-            PreviewMessage = previewMessage;
+            Username = chatTitle;
+            PreviewMessage = preview;
             LastMessageDate = lastMessageDate;
         }
     }
