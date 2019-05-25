@@ -26,5 +26,5 @@ var wsSucceded = function (data) {
 var populateFrontEnd = function (data) {
     console.log(data);
     console.log(data[0].chatTitle);
-    $("#exampleParag").html(data[0].chatTitle);
+    $(".last_chat_message").html(data[0].chatTitle);
 };
