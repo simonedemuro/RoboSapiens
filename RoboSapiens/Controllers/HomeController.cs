@@ -13,13 +13,11 @@ using RoboSapiens.UI.Controllers;
 
 namespace RoboSapiens.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        ConversationsRepository Repo;
 
         public IActionResult Index()
         {
-            Repo = new ConversationsRepository(new SupportSapiensContext());
             List<MessageDTO> test = Repo.GetConversationMessages(3);
             return View();
         }
