@@ -67,6 +67,7 @@ var renderChatPreviewDiv = function (preview) {
 
 var populateChatWindowFrontend = function (messageList) {
     //console.log(messageList);
+    $(".msg_history").empty();
     $.each(messageList, function (key, value) {
         renderChatWindowDiv(value);
     })
