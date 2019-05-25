@@ -17,6 +17,7 @@ namespace RoboSapiens.Controllers
             return View();
         }
 
+        [HttpGet]
         public List<ChatPreviewVM> GetConversationPreview()
         {
             return new List<ChatPreviewVM>()
