@@ -10,6 +10,7 @@ namespace RoboSapiens.EF.Models
         public bool IsFromAgent { get; set; }
         public string PrimaryEmotion { get; set; }
         public long ConversationId { get; set; }
+        public DateTime Timestamp { get; set; }
 
         public Conversation Conversation { get; set; }
     }

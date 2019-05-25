@@ -61,8 +61,6 @@ namespace RoboSapiens.EF.Models
 
             modelBuilder.Entity<Conversation>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.PrevalentEmotion).HasMaxLength(255);
 
                 entity.HasOne(d => d.Agent)
@@ -97,8 +95,6 @@ namespace RoboSapiens.EF.Models
 
             modelBuilder.Entity<IssueTag>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -106,13 +102,15 @@ namespace RoboSapiens.EF.Models
 
             modelBuilder.Entity<Message>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.IsFromAgent).HasColumnName("isFromAgent");
 
                 entity.Property(e => e.PrimaryEmotion).HasMaxLength(255);
 
                 entity.Property(e => e.Text).IsRequired();
+
+                entity.Property(e => e.Timestamp)
+                    .HasColumnType("datetime2(3)")
+                    .HasDefaultValueSql("(sysdatetime())");
 
                 entity.HasOne(d => d.Conversation)
                     .WithMany(p => p.Message)

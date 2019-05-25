@@ -19,5 +19,18 @@ namespace RoboSapiens.Domain.ExtensionMethods
             };
         }
 
+        public static ConversationDTO ToConversationDTO(this Conversation conv)
+        {
+            return new ConversationDTO()
+            {
+                AgentId = conv.AgentId,
+                CustomerId = conv.CustomerId,
+                Id = conv.Id,
+                PrevalentEmotion = conv.PrevalentEmotion,
+                State = conv.State,
+                TagId = conv.TagId
+            };
+        }
+
     }
 }
