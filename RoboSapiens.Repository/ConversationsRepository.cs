@@ -18,14 +18,15 @@ namespace RoboSapiens.Repository
 
         public List<MessageDTO> GetConversationMessages(long ConversationId)
         {
-            List<Message> dbMessages = dbContext.Message
+            /*List<Message> dbMessages = dbContext.Message
                 .Where(x => x.ConversationId == ConversationId)
                 .ToList();
             List<MessageDTO> messageDTOs = new List<MessageDTO>();
 
             dbMessages.ForEach(x => messageDTOs.Add(x.ToMessageDTO()));
 
-            return messageDTOs;
+            return messageDTOs;*/
+            return null;
         }
 
 

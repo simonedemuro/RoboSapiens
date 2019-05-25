@@ -21,11 +21,11 @@ function populateChatPreview() {
     });
 };
 
-function populateChatWindow() {
+function populateChatWindow(chatId) {
     console.log("inside populateChatWindow");
     $.ajax({
         url: "Home/GetChatMessages",
-        data: "",
+        data: chatId,
         type: "GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -40,6 +40,7 @@ function populateChatWindow() {
 var pcpSucceded = function (data) {
     //console.log("Ajax succeded");
     populatePreviewFrontEnd(data);
+    $(".target").click(onChatClick);
 };
 
 var pcwSucceded = function (data) {
@@ -55,7 +56,7 @@ var populatePreviewFrontEnd = function (prevewList) {
 };
 
 var renderChatPreviewDiv = function (preview) {
-    var previewHtml = "<div class=\"chat_list\" data-conversation-id=" + preview.chatID + ">" +
+    var previewHtml = "<div class=\"chat_list target\" data-conversation-id=" + preview.chatID + ">" +
         "<div class=\"chat_people\">" +
             "<div class=\"chat_img\"><img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"img\"></img></div>" +
                 "<div class=\"chat_ib\">" +
@@ -77,23 +78,22 @@ var renderChatWindowDiv = function (message) {
     if (message.cssSelector1 == "incoming_msg") {
         messageHtml += "<div class=\"incoming_msg_img\"> <img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"img\"> </div>";
         messageHtml += "<div class=\"" + message.cssSelector2 + "\">";
-        messageHtml += "<div class=\"received_withd_msg\"></div>";
+        messageHtml += "<div class=\"received_withd_msg\">";
+        messageHtml += "<p>" + message.messageBody + "</p></div>";
     }
 
     else {
         messageHtml += "<div class=\"" + message.cssSelector2 + "\">";
+        messageHtml += "<p>" + message.messageBody + "</p>";
     }
-    messageHtml += "<p>" + message.messageBody + "</p>";
     messageHtml += "<span class=\"time_date\">" + message.messageTime + "    |    " + message.messageDate + "</span></div>";
     messageHtml += "</div></div></div>";
     $(".msg_history").append(messageHtml);
 }
 
-/*<div class="incoming_msg">
-    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-    <div class="received_msg">
-    <div class="received_withd_msg">
-        <p>Test, which is a new approach to have</p>
-        <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-    </div>
-</div>*/
+var onChatClick = function () {
+    var target = $(event.target);
+    while (!target.hasClass("chat_list")) target = target.parent();
+    var chatId = target.attr("data-conversation-id");
+    populateChatWindow(chatId);
+}
