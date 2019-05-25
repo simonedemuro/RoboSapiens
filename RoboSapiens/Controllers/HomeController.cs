@@ -28,7 +28,18 @@ namespace RoboSapiens.Controllers
         {
             return new List<ChatPreviewVM>()
             {
-                new ChatPreviewVM("Marello", "ciao, sono disperato...", "24-MAR")
+                new ChatPreviewVM(1, "Marello", "ciao, sono disperato...", "24-MAR"),
+                new ChatPreviewVM(2, "Giuseppe", "Vuoi guadagnare 200 euro al secondo quadro stando comodamente seduto a casa?", "22-MAR")
+            };
+        }
+
+        [HttpGet]
+        public List<ChatMessageVM> GetChatMessages()
+        {
+            return new List<ChatMessageVM>()
+            {
+                new ChatMessageVM("Ciaoo", "24-Mar", "11:09", "incoming_msg"),
+                new ChatMessageVM("Salve, sono un messaggio molto lungo per un test, come sto? Nessuno mai me lo chiede...", "24-Mar", "11:10", "outgoing_msg")
             };
         }
 
