@@ -19,6 +19,7 @@ namespace RoboSapiens.Controllers
         public IActionResult Index()
         {
             List<MessageDTO> test = Repo.GetConversationMessages(3);
+            List <ConversationDTO> testConversations = Repo.GetConversations();
             return View();
         }
 

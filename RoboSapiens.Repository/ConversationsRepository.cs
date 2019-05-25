@@ -28,6 +28,14 @@ namespace RoboSapiens.Repository
             return messageDTOs;
         }
 
+        public List<ConversationDTO> GetConversations()
+        {
+            // TODO: Consider that in real world there will be the need to paginate it.. consider offset fetch
+            List<Conversation> ConversationsChat = dbContext.Conversation.ToList();
+            List<ConversationDTO> conversationDTOs = new List<ConversationDTO>();
+            ConversationsChat.ForEach(x => conversationDTOs.Add(x.ToConversationDTO()));
+            return conversationDTOs;
+        }
 
     }
 }
