@@ -26,6 +26,9 @@ namespace RoboSapiens.Controllers
         public List<ChatPreviewVM> GetConversationPreview() => Repo.GetConversations();
 
         [HttpGet]
+        public string GetMoodByMessageId(long MessageId) => Repo.FindMoodByMessageId(MessageId);
+
+        [HttpGet]
         public List<ChatMessageVM> GetChatMessages(long ChatId)
         {
             return Repo.GetConversationMessages(ChatId);

@@ -13,5 +13,7 @@ namespace RoboSapiens.Repository
         long getConversationIdByUsername(string Username);
 
         void setTelegramChatIdOnConversation(long ConversationId, long TelegramChatId);
+
+        string FindMoodByMessageId(long MessageId);
     }
 }

@@ -22,7 +22,7 @@ namespace RoboSapiens.Repository
         {
             CustomerUser User = dbContext.CustomerUser
                 .Where(x => x.Name == Username).First();
-            if(User != null)
+            if (User != null)
             {
                 return dbContext.Conversation
                     .Where(x => x.CustomerId == User.Id).First().Id;
@@ -50,16 +50,17 @@ namespace RoboSapiens.Repository
             List<Conversation> ConversationsChat = dbContext.Conversation.ToList();
 
             var ConversationsQuery = from conv in ConversationsChat
-                                  join cust in dbContext.CustomerUser
-                                  on conv.CustomerId equals cust.Id
-                                  select new ChatPreviewVM(conv.Id, cust.Name, "", "");
+                                     join cust in dbContext.CustomerUser
+                                     on conv.CustomerId equals cust.Id
+                                     select new ChatPreviewVM(conv.Id, cust.Name, "", "");
 
             List<ChatPreviewVM> ConversationsVM = new List<ChatPreviewVM>();
 
             foreach (var conv in ConversationsQuery.ToList())
             {
                 var lastMessage = dbContext.Message
-                    .OrderBy(x => x.Timestamp)
+                    .Where(x => x.ConversationId == conv.ChatID)
+                    .OrderByDescending(x => x.Timestamp)
                     .FirstOrDefault();
 
                 ConversationsVM.Add(new ChatPreviewVM(conv.ChatID, conv.Username, lastMessage.Text, lastMessage.Timestamp.ToString()));
@@ -87,9 +88,9 @@ namespace RoboSapiens.Repository
             Conversation Conversation = dbContext.Conversation
                 .Where(x => x.Id == ConversationId).First();
 
-            if(Conversation != null)
+            if (Conversation != null)
             {
-                Conversation.TelegramChatId= TelegramChatId;
+                Conversation.TelegramChatId = TelegramChatId;
                 dbContext.SaveChanges();
             }
         }
@@ -98,6 +99,11 @@ namespace RoboSapiens.Repository
         {
             PythonService pythonService = new PythonService("", "");
             return PythonService.getMLAnalysis("http://192.168.30.83:5000/api/analyse/" + System.Net.WebUtility.UrlEncode((Message)));
+        }
+
+        public string FindMoodByMessageId(long MessageId)
+        {
+            return dbContext.Message.FirstOrDefault(x => x.Id == MessageId).PrimaryEmotion;
         }
     }
 }
