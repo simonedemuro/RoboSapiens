@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     populateChatPreview();
-    populateChatWindow();
+    $(".msg_send_btn").click(onSendClick);
+    $(".type_msg").hide();
 });
 
 
@@ -37,6 +38,21 @@ function populateChatWindow(chatId) {
     })
 };
 
+function sendMessage(chatId, body, isAgent) {
+    $.ajax({
+        url: "Home/PutMessageIntoChat",
+        data: chatId, body, isAgent,
+        type: "PUT",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: picSucceded,
+        error: function (xhr) {
+            window.location.href = "error.html";
+            console.log("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    })
+};
+
 var pcpSucceded = function (data) {
     //console.log("Ajax succeded");
     populatePreviewFrontEnd(data);
@@ -47,6 +63,10 @@ var pcwSucceded = function (data) {
     //console.log("Ajax succeded");
     populateChatWindowFrontend(data);
 };
+
+var picSucceded = function () {
+
+}
 
 var populatePreviewFrontEnd = function (prevewList) {
     //console.log(prevewList);
@@ -68,6 +88,7 @@ var renderChatPreviewDiv = function (preview) {
 var populateChatWindowFrontend = function (messageList) {
     //console.log(messageList);
     $(".msg_history").empty();
+    $(".type_msg").show();
     $.each(messageList, function (key, value) {
         renderChatWindowDiv(value);
     })
@@ -96,5 +117,15 @@ var onChatClick = function () {
     var target = $(event.target);
     while (!target.hasClass("chat_list")) target = target.parent();
     var chatId = target.attr("data-conversation-id");
+    $(".chat_list").removeClass("active_chat");
+    target.toggleClass("active_chat");
     populateChatWindow(chatId);
+}
+
+var onSendClick = function () {
+    var chatId = $(".active_chat").attr("data-conversation-id");
+    var text = $(".write_msg").val();
+    if (text != "") {
+        sendMessage(chatId, text, true);
+    }
 }
