@@ -14,4 +14,10 @@
     <PackageReference Include="Telegram.Bot" Version="14.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\RoboSapiens.Domain.csproj" />
+    <ProjectReference Include="..\RoboSapiens.Core\RoboSapiens.Core.csproj" />
+    <ProjectReference Include="..\RoboSapiens.EF\RoboSapiens.EF.csproj" />
+  </ItemGroup>
+
 </Project>
