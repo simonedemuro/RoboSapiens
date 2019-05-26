@@ -2,12 +2,13 @@
     populateChatPreview();
     $(".msg_send_btn").click(onSendClick);
     $(".type_msg").hide();
-    //setTimeout(myFunction, 3000);
+    setTimeout(myFunction, 3000);
 });
 
 function myFunction() {
     //alert('Hello');
-    var chatId = target.attr("data-conversation-id");
+    var chatId = $('.active_chat').attr("data-conversation-id");
+
     console.log(chatId);
     if (chatId) {
         populateChatWindow(chatId);
