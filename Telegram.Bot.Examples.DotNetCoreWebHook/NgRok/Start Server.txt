@@ -1,0 +1,1 @@
+﻿ngrok.exe http 8443 -host-header="localhost:8443"
