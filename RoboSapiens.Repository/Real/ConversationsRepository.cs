@@ -55,7 +55,7 @@ namespace RoboSapiens.Repository
             return ConversationsVM;
         }
 
-        public List<ChatMessageVM> PutMessageIntoChat(long ChatId, string Message, bool isFromAgent)
+        public void PutMessageIntoChat(long ChatId, string Message, bool isFromAgent)
         {
             //TODO: call Python message analysis
             string PrimaryEmotion = "";
@@ -68,8 +68,6 @@ namespace RoboSapiens.Repository
 
             dbContext.Message.Add(message);
             dbContext.SaveChanges();
-
-            return GetConversationMessages(ChatId);
         }
 
         private void analyzeData(long ChatId, string Message, bool isFromAgent)

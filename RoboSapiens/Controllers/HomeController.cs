@@ -38,9 +38,9 @@ namespace RoboSapiens.Controllers
             PythonService.DownloadPageAsync("http://192.168.30.83:5000/api/analyse/I%20could%20watch%20Leonardo%20Di%20Caprios%20films%20all%20day%20as%20he%20is%20a%20very%20talented%20actor.");
         }
         [HttpPut]
-        public List<ChatMessageVM> PutMessageIntoChat(long ChatId, string Message, bool IsFromAgent)
+        public void PutMessageIntoChat([FromBody]AddMessageDTO AddMessageDTO)
         {
-            return Repo.PutMessageIntoChat(ChatId, Message, IsFromAgent);
+            Repo.PutMessageIntoChat(AddMessageDTO.ChatId, AddMessageDTO.Message, AddMessageDTO.IsFromAgent);
         }
 
         public IActionResult Privacy()

@@ -39,13 +39,20 @@ function populateChatWindow(chatId) {
 };
 
 function sendMessage(chatId, body, isAgent) {
+    var message = {
+        "ChatId": chatId,
+        "Message": body,
+        "IsFromAgent": isAgent
+    };
+    console.log("message: " + JSON.stringify(message));
     $.ajax({
         url: "Home/PutMessageIntoChat",
-        data: chatId, body, isAgent,
+        contentType: "application/json",
+        data: JSON.stringify(message),
         type: "PUT",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: picSucceded,
+        success: function () {
+            populateChatWindow(chatId);
+        },
         error: function (xhr) {
             window.location.href = "error.html";
             console.log("An error occured: " + xhr.status + " " + xhr.statusText);

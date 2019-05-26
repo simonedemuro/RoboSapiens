@@ -8,6 +8,6 @@ namespace RoboSapiens.Repository
         List<ChatMessageVM> GetConversationMessages(long ConversationId);
         List<ChatPreviewVM> GetConversations();
 
-        List<ChatMessageVM> PutMessageIntoChat(long ChatId, string Message, bool isFromAgent);
+        void PutMessageIntoChat(long ChatId, string Message, bool isFromAgent);
     }
 }
