@@ -52,6 +52,7 @@ function sendMessage(chatId, body, isAgent) {
         type: "PUT",
         success: function () {
             populateChatWindow(chatId);
+            $(".write_msg").val("");
         },
         error: function (xhr) {
             window.location.href = "error.html";

@@ -17,7 +17,7 @@ namespace Domain.ViewModels
             MessageBody = Body;
             MessageDate = Date;
             MessageTime = Time;
-            CssSelector1 = (IsFromAgent) ? "outgoinging_msg" : "incoming_msg";
+            CssSelector1 = (IsFromAgent) ? "outgoing_msg" : "incoming_msg";
             CssSelector2 = (CssSelector1 == "incoming_msg") ? "received_msg" : "sent_msg";
         }
     }
