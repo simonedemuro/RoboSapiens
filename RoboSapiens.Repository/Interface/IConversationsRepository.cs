@@ -8,6 +8,10 @@ namespace RoboSapiens.Repository
         List<ChatMessageVM> GetConversationMessages(long ConversationId);
         List<ChatPreviewVM> GetConversations();
 
-        void PutMessageIntoChat(long ChatId, string Message, bool isFromAgent);
+        void PutMessageIntoChat(long ChatId, string Message, bool IsFromAgent);
+
+        long getConversationIdByUsername(string Username);
+
+        void setTelegramChatIdOnConversation(long ConversationId, long TelegramChatId);
     }
 }

@@ -19,12 +19,7 @@ namespace Telegram.Bot.Examples.DotNetCoreWebHook.Controllers
         // POST api/update
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Update MessageFromTelegram)
-        {
-            var ComunicationMessage = new RoboSapiens.EF.Models.Message()
-            {
-                Text = MessageFromTelegram.Message.ToString()
-            };
-
+        { 
             await _updateService.EchoAsync(MessageFromTelegram);
             return Ok();
         }

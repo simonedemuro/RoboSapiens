@@ -7,8 +7,17 @@ namespace RoboSapiens.Repository.Mock
 {
     public class ConversationsRepositoryMock : IConversationsRepository
     {
+        public long getConversationIdByUsername(string Username)
+        {
+            throw new NotImplementedException();
+        }
 
         public void PutMessageIntoChat(long ChatId, string Message, bool isFromAgent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setTelegramChatIdOnConversation(long ConversationId, long TelegramChatId)
         {
             throw new NotImplementedException();
         }

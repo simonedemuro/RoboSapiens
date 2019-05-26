@@ -1,11 +1,9 @@
-﻿using RoboSapiens.Domain.DTO;
-using RoboSapiens.EF.Models;
+﻿using RoboSapiens.EF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using RoboSapiens.Domain.ExtensionMethods;
 using Domain.ViewModels;
-using System.Net.Http;
 using RoboSapiens.Core.Services;
 
 namespace RoboSapiens.Repository
@@ -18,6 +16,20 @@ namespace RoboSapiens.Repository
         public ConversationsRepository(SupportSapiensContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public long getConversationIdByUsername(string Username)
+        {
+            CustomerUser User = dbContext.CustomerUser
+                .Where(x => x.Name == Username).First();
+            if(User != null)
+            {
+                return dbContext.Conversation
+                    .Where(x => x.CustomerId == User.Id).First().Id;
+            } else
+            {
+                return 0;
+            }
         }
 
         public List<ChatMessageVM> GetConversationMessages(long ConversationId)
@@ -56,19 +68,30 @@ namespace RoboSapiens.Repository
             return ConversationsVM;
         }
 
-        public void PutMessageIntoChat(long ChatId, string Message, bool isFromAgent)
+        public void PutMessageIntoChat(long ChatId, string Message, bool IsFromAgent)
         {
-            //TODO: call Python message analysis
             string PrimaryEmotion = analyzeData(Message);
             Message message = new Message();
             message.ConversationId = ChatId;
-            message.IsFromAgent = isFromAgent;
+            message.IsFromAgent = IsFromAgent;
             message.Text = Message;
             message.Timestamp = DateTime.Now;
             message.PrimaryEmotion = PrimaryEmotion;
 
             dbContext.Message.Add(message);
             dbContext.SaveChanges();
+        }
+
+        public void setTelegramChatIdOnConversation(long ConversationId, long TelegramChatId)
+        {
+            Conversation Conversation = dbContext.Conversation
+                .Where(x => x.Id == ConversationId).First();
+
+            if(Conversation != null)
+            {
+                Conversation.TelegramChatId= TelegramChatId;
+                dbContext.SaveChanges();
+            }
         }
 
         private string analyzeData(string Message)
