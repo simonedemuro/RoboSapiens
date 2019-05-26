@@ -54,5 +54,28 @@ namespace RoboSapiens.Core.Services
             }
         }
 
+        public static string getMLAnalysis(string url)
+        {
+            // ... Target page.
+            string page = url;
+
+            // ... Use HttpClient.
+            using (HttpClient client = new HttpClient())
+            {
+                var response = client.GetAsync(url).GetAwaiter().GetResult();
+                // ... Read the string.
+                var result = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                JObject json = JObject.Parse(result);
+
+
+                // ... Display the result.
+                if (json != null)
+                {
+                    return json["mood"].ToString();
+                }
+
+                return "";
+            }
+        }
     }
 }

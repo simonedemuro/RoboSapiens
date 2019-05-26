@@ -6,6 +6,7 @@ using System.Linq;
 using RoboSapiens.Domain.ExtensionMethods;
 using Domain.ViewModels;
 using System.Net.Http;
+using RoboSapiens.Core.Services;
 
 namespace RoboSapiens.Repository
 {
@@ -58,7 +59,7 @@ namespace RoboSapiens.Repository
         public void PutMessageIntoChat(long ChatId, string Message, bool isFromAgent)
         {
             //TODO: call Python message analysis
-            string PrimaryEmotion = "";
+            string PrimaryEmotion = analyzeData(Message);
             Message message = new Message();
             message.ConversationId = ChatId;
             message.IsFromAgent = isFromAgent;
@@ -70,12 +71,10 @@ namespace RoboSapiens.Repository
             dbContext.SaveChanges();
         }
 
-        private void analyzeData(long ChatId, string Message, bool isFromAgent)
+        private string analyzeData(string Message)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(URL);
-
-
+            PythonService pythonService = new PythonService("", "");
+            return PythonService.getMLAnalysis("http://192.168.30.83:5000/api/analyse/" + System.Net.WebUtility.UrlEncode((Message)));
         }
     }
 }
