@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using RoboSapiens.EF.Models;
@@ -36,7 +37,6 @@ namespace Telegram.Bot.Examples.DotNetCoreWebHook.Services
             if (message.Type == MessageType.Text)
             {
                 Repo.PutMessageIntoChat(3, message.Text, false);
-
                 // Echo each Message
                 await _botService.Client.SendTextMessageAsync(message.Chat.Id, message.Text);
             }
