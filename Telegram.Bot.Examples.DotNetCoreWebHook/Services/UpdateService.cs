@@ -2,6 +2,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using RoboSapiens.EF.Models;
+using RoboSapiens.Repository;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
@@ -9,6 +11,7 @@ namespace Telegram.Bot.Examples.DotNetCoreWebHook.Services
 {
     public class UpdateService : IUpdateService
     {
+        public IConversationsRepository Repo;
         private readonly IBotService _botService;
         private readonly ILogger<UpdateService> _logger;
 
@@ -16,6 +19,7 @@ namespace Telegram.Bot.Examples.DotNetCoreWebHook.Services
         {
             _botService = botService;
             _logger = logger;
+            Repo = new ConversationsRepository(new SupportSapiensContext());
         }
 
         public async Task EchoAsync(Update update)
@@ -31,23 +35,10 @@ namespace Telegram.Bot.Examples.DotNetCoreWebHook.Services
 
             if (message.Type == MessageType.Text)
             {
+                Repo.PutMessageIntoChat(3, message.Text, false);
+
                 // Echo each Message
                 await _botService.Client.SendTextMessageAsync(message.Chat.Id, message.Text);
-            }
-            else if (message.Type == MessageType.Photo)
-            {
-                // Download Photo
-                var fileId = message.Photo.LastOrDefault()?.FileId;
-                var file = await _botService.Client.GetFileAsync(fileId);
-
-                var filename = file.FileId + "." + file.FilePath.Split('.').Last();
-
-                using (var saveImageStream = System.IO.File.Open(filename, FileMode.Create))
-                {
-                    await _botService.Client.DownloadFileAsync(file.FilePath, saveImageStream);
-                }
-
-                await _botService.Client.SendTextMessageAsync(message.Chat.Id, "Thx for the Pics");
             }
         }
     }
