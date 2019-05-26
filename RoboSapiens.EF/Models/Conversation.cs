@@ -16,6 +16,7 @@ namespace RoboSapiens.EF.Models
         public string PrevalentEmotion { get; set; }
         public int State { get; set; }
         public long TagId { get; set; }
+        public long? TelegramChatId { get; set; }
 
         public AgentUser Agent { get; set; }
         public CustomerUser Customer { get; set; }
