@@ -3,6 +3,9 @@
     $(".msg_send_btn").click(onSendClick);
     $(".type_msg").hide();
     setTimeout(myFunction, 3000);
+    $(".msg_history").animate({
+        scrollTop: $(document).height()
+    }, 0);
 });
 
 function myFunction() {
@@ -112,9 +115,6 @@ var populateChatWindowFrontend = function (messageList) {
     $.each(messageList, function (key, value) {
         renderChatWindowDiv(value);
     })
-    $(".msg_history").animate({
-        scrollTop: $(document).height()
-    }, 0);
 };
 
 var renderChatWindowDiv = function (message) {
