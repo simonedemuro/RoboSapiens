@@ -43,5 +43,9 @@ namespace Telegram.Bot.Examples.DotNetCoreWebHook.Services
         }
 
 
+        void IUpdateService.SendMessageToTelegram(long TelegramChatId, string Message)
+        {
+            _botService.Client.SendTextMessageAsync(TelegramChatId, Message);
+        }
     }
 }

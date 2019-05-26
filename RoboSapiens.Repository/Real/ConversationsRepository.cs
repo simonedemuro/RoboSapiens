@@ -18,6 +18,20 @@ namespace RoboSapiens.Repository
             this.dbContext = dbContext;
         }
 
+        public long GetTelegramChatIdByConversationId(long ConversationId)
+        {
+            Conversation Result = dbContext.Conversation
+                .Where(x => x.Id == ConversationId).First();
+            if(Result != null && Result.TelegramChatId != null)
+            {
+                return Result.TelegramChatId.Value;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public long getConversationIdByUsername(string Username)
         {
             CustomerUser User = dbContext.CustomerUser

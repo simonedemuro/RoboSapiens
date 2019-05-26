@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using RoboSapiens.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Telegram.Bot.Examples.DotNetCoreWebHook.Services;
+using Telegram.Bot.Examples.DotNetCoreWebHook;
 
 namespace RoboSapiens
 {
@@ -39,6 +41,11 @@ namespace RoboSapiens
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<IUpdateService, UpdateService>();
+            services.AddSingleton<IBotService, BotService>();
+
+            services.Configure<BotConfiguration>(Configuration.GetSection("BotConfiguration"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

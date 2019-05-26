@@ -11,11 +11,17 @@ using RoboSapiens.EF.Models;
 using RoboSapiens.Models;
 using RoboSapiens.Repository;
 using RoboSapiens.UI.Controllers;
+using Telegram.Bot.Examples.DotNetCoreWebHook.Services;
 
 namespace RoboSapiens.Controllers
 {
     public class HomeController : BaseController
     {
+        private  readonly IUpdateService updateService;
+        public HomeController(IUpdateService _updateService)
+        {
+            updateService = _updateService;
+        }
 
         public IActionResult Index()
         {
@@ -44,6 +50,13 @@ namespace RoboSapiens.Controllers
         public void PutMessageIntoChat([FromBody]AddMessageDTO AddMessageDTO)
         {
             Repo.PutMessageIntoChat(AddMessageDTO.ChatId, AddMessageDTO.Message, AddMessageDTO.IsFromAgent);
+
+            long TelegramChatId = Repo.GetTelegramChatIdByConversationId(AddMessageDTO.ChatId);
+
+            if (TelegramChatId != 0)
+            {
+                updateService.SendMessageToTelegram(TelegramChatId, AddMessageDTO.Message);
+            }
         }
 
         public IActionResult Privacy()

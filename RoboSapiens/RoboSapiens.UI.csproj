@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Domain\RoboSapiens.Domain.csproj" />
     <ProjectReference Include="..\RoboSapiens.Core\RoboSapiens.Core.csproj" />
     <ProjectReference Include="..\RoboSapiens.Repository\RoboSapiens.Repository.csproj" />
+    <ProjectReference Include="..\Telegram.Bot.Examples.DotNetCoreWebHook\Telegram.Bot.Examples.DotNetCoreWebHook.csproj" />
   </ItemGroup>
 
 </Project>
