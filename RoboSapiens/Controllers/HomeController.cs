@@ -18,8 +18,6 @@ namespace RoboSapiens.Controllers
 
         public IActionResult Index()
         {
-            //List<MessageDTO> test = Repo.GetConversationMessages(3);
-            //List <ConversationDTO> testConversations = Repo.GetConversations();
             return View();
         }
 
@@ -32,19 +30,6 @@ namespace RoboSapiens.Controllers
             return Repo.GetConversationMessages(ChatId);
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
 
         public IActionResult Privacy()
         {

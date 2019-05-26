@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboSapiens.UI", "RoboSapiens\RoboSapiens.UI.csproj", "{D1F829ED-5278-4AF6-AE47-D7A3684FE3ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboSapiens.UI", "RoboSapiens\RoboSapiens.UI.csproj", "{D1F829ED-5278-4AF6-AE47-D7A3684FE3ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboSapiens.Domain", "Domain\RoboSapiens.Domain.csproj", "{329AB341-41DA-4C74-9110-E58E28164135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboSapiens.Domain", "Domain\RoboSapiens.Domain.csproj", "{329AB341-41DA-4C74-9110-E58E28164135}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboSapiens.EF", "RoboSapiens.EF\RoboSapiens.EF.csproj", "{D176D496-B26A-45E5-BC67-7EDC961986B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboSapiens.EF", "RoboSapiens.EF\RoboSapiens.EF.csproj", "{D176D496-B26A-45E5-BC67-7EDC961986B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboSapiens.Repository", "RoboSapiens.Repository\RoboSapiens.Repository.csproj", "{148863E6-92E8-46FF-9532-B9700B836B35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboSapiens.Repository", "RoboSapiens.Repository\RoboSapiens.Repository.csproj", "{148863E6-92E8-46FF-9532-B9700B836B35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboSapiens.Core", "RoboSapiens.Core\RoboSapiens.Core.csproj", "{DF4473B4-1BA4-4209-AFB1-5C32FDE6FFA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboSapiens.Factory", "RoboSapiens.Factory\RoboSapiens.Factory.csproj", "{5F481417-270F-4B73-8E76-0C2C4766C481}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{148863E6-92E8-46FF-9532-B9700B836B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{148863E6-92E8-46FF-9532-B9700B836B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{148863E6-92E8-46FF-9532-B9700B836B35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF4473B4-1BA4-4209-AFB1-5C32FDE6FFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF4473B4-1BA4-4209-AFB1-5C32FDE6FFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF4473B4-1BA4-4209-AFB1-5C32FDE6FFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF4473B4-1BA4-4209-AFB1-5C32FDE6FFA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F481417-270F-4B73-8E76-0C2C4766C481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F481417-270F-4B73-8E76-0C2C4766C481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F481417-270F-4B73-8E76-0C2C4766C481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F481417-270F-4B73-8E76-0C2C4766C481}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
