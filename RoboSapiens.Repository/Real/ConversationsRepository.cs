@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using RoboSapiens.Domain.ExtensionMethods;
 using Domain.ViewModels;
+using System.Net.Http;
 
 namespace RoboSapiens.Repository
 {
     public class ConversationsRepository : IConversationsRepository
     {
+        private const string URL = "https://sub.domain.com/objects.json";
         SupportSapiensContext dbContext;
 
         public ConversationsRepository(SupportSapiensContext dbContext)
@@ -53,5 +55,29 @@ namespace RoboSapiens.Repository
             return ConversationsVM;
         }
 
+        public List<ChatMessageVM> PutMessageIntoChat(long ChatId, string Message, bool isFromAgent)
+        {
+            //TODO: call Python message analysis
+            string PrimaryEmotion = "";
+            Message message = new Message();
+            message.ConversationId = ChatId;
+            message.IsFromAgent = isFromAgent;
+            message.Text = Message;
+            message.Timestamp = DateTime.Now;
+            message.PrimaryEmotion = PrimaryEmotion;
+
+            dbContext.Message.Add(message);
+            dbContext.SaveChanges();
+
+            return GetConversationMessages(ChatId);
+        }
+
+        private void analyzeData(long ChatId, string Message, bool isFromAgent)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(URL);
+
+
+        }
     }
 }

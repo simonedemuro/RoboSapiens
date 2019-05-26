@@ -7,6 +7,11 @@ namespace RoboSapiens.Repository.Mock
 {
     public class ConversationsRepositoryMock : IConversationsRepository
     {
+        public List<ChatMessageVM> PutMessageIntoChat(long ChatId, string Message, bool isFromAgent)
+        {
+            throw new NotImplementedException();
+        }
+
         List<ChatMessageVM> IConversationsRepository.GetConversationMessages(long ConversationId)
         {
             throw new NotImplementedException();
