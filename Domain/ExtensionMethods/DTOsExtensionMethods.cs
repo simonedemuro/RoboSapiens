@@ -11,7 +11,7 @@ namespace RoboSapiens.Domain.ExtensionMethods
     {
         public static ChatMessageVM ToMessageDTO(this Message msg)
         {
-            return new ChatMessageVM(msg.Text, msg.Timestamp.Date.ToString(), msg.Timestamp.TimeOfDay.ToString(), msg.IsFromAgent);
+            return new ChatMessageVM(msg.Text, msg.Timestamp.Date.ToString(), msg.Timestamp.TimeOfDay.ToString(), msg.IsFromAgent, msg.PrimaryEmotion);
         }
 
         public static ConversationDTO ToConversationDTO(this Conversation conv)

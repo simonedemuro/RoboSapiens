@@ -1,18 +1,22 @@
 ﻿$(document).ready(function () {
     populateChatPreview();
     $(".msg_send_btn").click(onSendClick);
+    $(".write_msg").keypress(function (event) {
+        var keycode = event.keyCode ? event.keyCode : event.which;
+        if (keycode === 13) {
+            onSendClick();
+            $(".write_msg").text("");
+        }
+    });
     $(".type_msg").hide();
     setTimeout(myFunction, 3000);
-    $(".msg_history").animate({
-        scrollTop: $(document).height()
-    }, 0);
 });
 
 function myFunction() {
     //alert('Hello');
     var chatId = $('.active_chat').attr("data-conversation-id");
 
-    console.log(chatId);
+    //console.log(chatId);
     if (chatId) {
         populateChatWindow(chatId);
     }
@@ -21,7 +25,7 @@ function myFunction() {
 }
 
 function populateChatPreview() {
-    console.log("inside populateChatPreview");
+    //console.log("inside populateChatPreview");
     //StartLoading();
     $.ajax({
         url: "/Home/GetConversationPreview",
@@ -32,13 +36,13 @@ function populateChatPreview() {
         success: pcpSucceded,
         error: function (xhr) {
             window.location.href = "error.html";
-            console.log("An error occured: " + xhr.status + " " + xhr.statusText);
+            //console.log("An error occured: " + xhr.status + " " + xhr.statusText);
         }
     });
 };
 
 function populateChatWindow(chatId) {
-    console.log("inside populateChatWindow");
+    //console.log("inside populateChatWindow");
     $.ajax({
         url: "Home/GetChatMessages?ChatId=" + chatId,
         data: "",
@@ -48,7 +52,7 @@ function populateChatWindow(chatId) {
         success: pcwSucceded,
         error: function (xhr) {
             window.location.href = "error.html";
-            console.log("An error occured: " + xhr.status + " " + xhr.statusText);
+            //console.log("An error occured: " + xhr.status + " " + xhr.statusText);
         }
     })
 };
@@ -59,7 +63,7 @@ function sendMessage(chatId, body, isAgent) {
         "Message": body,
         "IsFromAgent": isAgent
     };
-    console.log("message: " + JSON.stringify(message));
+    //console.log("message: " + JSON.stringify(message));
     $.ajax({
         url: "Home/PutMessageIntoChat",
         contentType: "application/json",
@@ -71,19 +75,19 @@ function sendMessage(chatId, body, isAgent) {
         },
         error: function (xhr) {
             window.location.href = "error.html";
-            console.log("An error occured: " + xhr.status + " " + xhr.statusText);
+            //console.log("An error occured: " + xhr.status + " " + xhr.statusText);
         }
     })
 };
 
 var pcpSucceded = function (data) {
-    //console.log("Ajax succeded");
+    ////console.log("Ajax succeded");
     populatePreviewFrontEnd(data);
     $(".target").click(onChatClick);
 };
 
 var pcwSucceded = function (data) {
-    //console.log("Ajax succeded");
+    ////console.log("Ajax succeded");
     populateChatWindowFrontend(data);
 };
 
@@ -92,7 +96,7 @@ var picSucceded = function () {
 }
 
 var populatePreviewFrontEnd = function (prevewList) {
-    //console.log(prevewList);
+    ////console.log(prevewList);
     $.each(prevewList, function (key, value) {
         renderChatPreviewDiv(value);
     })
@@ -109,7 +113,7 @@ var renderChatPreviewDiv = function (preview) {
 };
 
 var populateChatWindowFrontend = function (messageList) {
-    //console.log(messageList);
+    ////console.log(messageList);
     $(".msg_history").empty();
     $(".type_msg").show();
     $.each(messageList, function (key, value) {
@@ -118,9 +122,9 @@ var populateChatWindowFrontend = function (messageList) {
 };
 
 var renderChatWindowDiv = function (message) {
-    console.log(message);
-    var messageHtml = "<div class=\"" + message.cssSelector1 + "\">";
-    if (message.cssSelector1 == "incoming_msg") {
+    //console.log(message);
+    var messageHtml = "<div title=\"" + message.mood + "\" class=\"" + message.cssSelector1 + "\">";
+    if (message.cssSelector1 === "incoming_msg") {
         messageHtml += "<div class=\"incoming_msg_img\"> <img src=\"https://ptetutorials.com/images/user-profile.png\" alt=\"img\"> </div>";
         messageHtml += "<div class=\"" + message.cssSelector2 + "\">";
         messageHtml += "<div class=\"received_withd_msg\">";
@@ -148,7 +152,7 @@ var onChatClick = function () {
 var onSendClick = function () {
     var chatId = $(".active_chat").attr("data-conversation-id");
     var text = $(".write_msg").val();
-    if (text != "") {
+    if (text !== "") {
         sendMessage(chatId, text, true);
     }
 }
