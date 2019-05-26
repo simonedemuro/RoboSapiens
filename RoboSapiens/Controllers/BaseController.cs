@@ -10,7 +10,7 @@ namespace RoboSapiens.UI.Controllers
 {
     public class BaseController : Controller
     {
-        public ConversationsRepository Repo;
+        public IConversationsRepository Repo;
 
         public BaseController()
         {

@@ -8,7 +8,7 @@ using Domain.ViewModels;
 
 namespace RoboSapiens.Repository
 {
-    public class ConversationsRepository
+    public class ConversationsRepository : IConversationsRepository
     {
         SupportSapiensContext dbContext;
 
