@@ -15,6 +15,7 @@ img {
     color: #EFEFEF;
     padding: 12px;
     padding-left: 20px;
+    border: 0;
 }
 
 .inbox_people {
