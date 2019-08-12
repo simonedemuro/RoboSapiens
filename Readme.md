@@ -21,7 +21,6 @@
 ------
 ![](/ReadMe/Pitch%20(bozza).jpg)
 
-
 ------
 
 
@@ -30,7 +29,7 @@
 
 Nearly every business flow that makes use of phone calls as their main communication channel suffers from the following problems:
 
-![](/ReadMe/Pitch (bozza) (1).jpg)
+![](/ReadMe/Pitch%20(bozza)%20(1).jpg)
 
 ## Our Vision
 
@@ -79,3 +78,20 @@ Several quick start options are available:
 
 Read the [Getting started page](https://getbootstrap.com/docs/4.3/getting-started/introduction/) for information on the framework contents, templates and examples, and more.
 
+# Technologies & Credits 
+
+![](/ReadMe/Slide5.PNG)
+
+## Participants:
+
+- Simone Demuro
+
+- Marcello Chirri
+
+- Saini Preetinder
+
+- Walid Iguider
+
+- Lala Chaimae Naciri
+
+  [Hackathon Winners](http://www.ipsamagazine.it/hackamol-2019-i-vincitori-della-ii-edizione-del-contest-di-mutuionline-rivolto-a-sviluppatori-software/)
