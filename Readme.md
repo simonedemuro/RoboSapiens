@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="file:///C:/Users/demu9/Documents/HackaMOL/RoboSapiens/Logo.PNG" alt="robosapiens logo" width="72" height="72">
+    <img src="/ReadMe/Logo.PNG" alt="robosapiens logo" width="72" height="72">
 </p>
 
 <h3 align="center">RoboSapiens</h3>
@@ -19,9 +19,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ------
-
-[![](/ReadMe/Pitch (bozza).jpg)](<https://www.youtube.com/watch?v=5ukMB4kQ_hU> "awesome")
-
+![](/ReadMe/Pitch%20(bozza).jpg)
 
 
 ------
@@ -32,7 +30,7 @@
 
 Nearly every business flow that makes use of phone calls as their main communication channel suffers from the following problems:
 
-![Pitch (bozza) (1)](/ReadMe/Pitch (bozza) (1).jpg)
+![](/ReadMe/Pitch (bozza) (1).jpg)
 
 ## Our Vision
 
@@ -48,7 +46,7 @@ This approach has the following advantages:
 
 - The Messages in the chat will be analyzed to find out the state of mind of the customers in the conversation, making possible to exactly know how the operators are performing.
 
-  ![](/ReadMe/Slide2.PNG)
+![](/ReadMe/Slide2.PNG)
 
 ![](/ReadMe/Slide3.PNG)
 
