@@ -118,7 +118,8 @@ var populateChatWindowFrontend = function (messageList) {
     $(".type_msg").show();
     $.each(messageList, function (key, value) {
         renderChatWindowDiv(value);
-    })
+    });
+
 };
 
 var renderChatWindowDiv = function (message) {
@@ -147,6 +148,8 @@ var onChatClick = function () {
     $(".chat_list").removeClass("active_chat");
     target.toggleClass("active_chat");
     populateChatWindow(chatId);
+    $('.msg_history').animate({ scrollTop: document.body.scrollHeight }, "fast");
+
 }
 
 var onSendClick = function () {
